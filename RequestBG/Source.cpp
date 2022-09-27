@@ -5,7 +5,7 @@ int main() {
     RECT desktop;
     SetProcessDPIAware();
     const HWND hDesktop{ GetDesktopWindow() };
-f    GetWindowRect(hDesktop, &desktop);
+    GetWindowRect(hDesktop, &desktop);
     const unsigned int SCR_WIDTH = desktop.right - desktop.left;
     const unsigned int SCR_HEIGHT = desktop.bottom - desktop.top;
 
