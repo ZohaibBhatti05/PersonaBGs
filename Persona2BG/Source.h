@@ -17,6 +17,10 @@
 
 GLFWwindow* window;
 
+const double fpsLimit = 1.0f / 30.0f;
+double lastUpdateTime = 0;  // number of seconds since the last loop
+double lastFrameTime = 0;   // number of seconds since the last frame
+
 float currentFrame;
 float lastFrame;
 float deltaTime;

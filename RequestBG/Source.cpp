@@ -35,6 +35,8 @@ int main() {
     }
     glfwMakeContextCurrent(window);
 
+    glfwSwapInterval(1);
+
     // glad: load all OpenGL function pointers
     // ---------------------------------------
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -56,7 +58,12 @@ int main() {
     while (!glfwWindowShouldClose(window))
     {
         update();
-        draw();
+
+        if ((currentFrame - lastFrameTime) >= fpsLimit) {
+            draw();
+            lastFrameTime = currentFrame;
+        }
+        lastUpdateTime = currentFrame;
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
@@ -172,11 +179,10 @@ void drawSquares(bool reverse) {
 
     if (!reverse) { t = 2 - t; }
 
-    for (int i = 0; i < 50; i++) {
-        float index = max(47 - i + t, 0);
+    for (int i = 0; i < 38; i++) {
+        float index = max(35 - i + t, 0);
 
         glm::mat4 model{ glm::scale(identity, glm::vec3(pow(1.9, index * 0.2))) };
-        //glm::mat4 model{ glm::scale(identity, glm::vec3(50 *(1 - sqrt(1 - pow(index / 30.0f, 2))))) };
 
         model = glm::rotate(model,
             1 + (index * 0.13f), glm::vec3(0.0, 0.0, 1.0));

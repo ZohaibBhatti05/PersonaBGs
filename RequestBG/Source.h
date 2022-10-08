@@ -17,9 +17,13 @@
 
 GLFWwindow* window;
 
-float currentFrame;
-float lastFrame;
-float deltaTime;
+double currentFrame;
+double lastFrame;
+double deltaTime;
+
+const double fpsLimit = 1.0f / 30.0f;
+double lastUpdateTime = 0;  // number of seconds since the last loop
+double lastFrameTime = 0;   // number of seconds since the last frame
 
 const glm::mat4 projection{ glm::ortho(0.0f, 1920.0f, 1080.0f, 0.0f, 10.0f, -10.0f) };
 const glm::mat4 identity{ glm::mat4(1.0) };

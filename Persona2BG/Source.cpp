@@ -32,6 +32,8 @@ int main() {
     }
     glfwMakeContextCurrent(window);
 
+    glfwSwapInterval(1);
+
     // glad: load all OpenGL function pointers
     // ---------------------------------------
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -53,7 +55,12 @@ int main() {
     while (!glfwWindowShouldClose(window))
     {
         update();
-        draw();
+
+        if ((currentFrame - lastFrameTime) >= fpsLimit) {
+            draw();
+            lastFrameTime = currentFrame;
+        }
+        lastUpdateTime = currentFrame;
 
         glfwSwapBuffers(window);
         glfwPollEvents();
