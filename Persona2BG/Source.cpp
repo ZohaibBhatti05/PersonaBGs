@@ -232,6 +232,9 @@ void draw() {
         glDrawTextureNV(frontTexture, sampler, 0, 0, 1920, 1080, 0, 0, 1, 1, 0);
     }
     else {
+        glBindVertexArray(bgVAO);
+        textureShader.use();
+        textureShader.setMat4("transformation", projection);
         textureShader.setInt("Texture", 3);
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     }
